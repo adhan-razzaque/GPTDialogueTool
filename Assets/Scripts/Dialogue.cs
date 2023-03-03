@@ -10,66 +10,48 @@ public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
 
-    public string[] lines;
+    public string line;
 
     public float charactersPerSecond;
-
-    private int _index;
-
-    private bool _started;
+    
+    private bool _finished;
     
     // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
+        StartDialogue();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         Debug.Log("Interacting");
-        if (!_started)
+
+        if (!_finished)
         {
-            StartDialogue();
+            StopAllCoroutines();
+            textComponent.text = line;
+            _finished = true;
             return;
         }
         
-        if (textComponent.text == lines[_index])
-        {
-            NextLine();
-        }
-        else
-        {
-            StopAllCoroutines();
-            textComponent.text = lines[_index];
-        }
+        Destroy(gameObject);
     }
 
     private void StartDialogue()
     {
-        _index = 0;
         StartCoroutine(TypeLine());
     }
 
     private IEnumerator TypeLine()
     {
-        foreach (var c in lines[_index])
+        foreach (var c in line)
         {
             textComponent.text += c;
             yield return new WaitForSeconds(1/charactersPerSecond);
         }
-    }
 
-    private void NextLine()
-    {
-        if (_index < lines.Length - 1)
-        {
-            ++_index;
-            textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        _finished = true;
     }
 }
