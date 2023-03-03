@@ -2,6 +2,7 @@
 // Edited by Adhan-Razzaque
 
 using System;
+using System.Collections;
 using System.IO;
 using Data;
 using UnityEngine;
@@ -36,8 +37,13 @@ namespace Managers
 
             _isRunning = true;
 
+            StartCoroutine(SendRequest(prompt, responseHandler));
+        } // execute
+
+        private IEnumerator SendRequest(string prompt, Action<string> responseHandler)
+        {
             // fill in request data
-            RequestData requestData = new RequestData()
+            var requestData = new RequestData()
             {
                 model = modelName,
                 prompt = prompt,
@@ -52,35 +58,39 @@ namespace Managers
 
             var postData = System.Text.Encoding.UTF8.GetBytes(jsonData);
 
-            UnityWebRequest request = UnityWebRequest.Post(URL, jsonData);
+            using UnityWebRequest request = new UnityWebRequest(URL);
+            request.method = UnityWebRequest.kHttpVerbPOST;
             request.uploadHandler = new UploadHandlerRaw(postData);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", "Bearer " + _apiKey);
+            request.disposeUploadHandlerOnDispose = true;
+            request.disposeDownloadHandlerOnDispose = true;
 
-            var webRequest = request.SendWebRequest();
+            yield return request.SendWebRequest();
 
-            webRequest.completed += (op) =>
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.LogError(request.error);
-                    responseHandler?.Invoke(null);
-                }
-                else
-                {
-                    Debug.Log(request.downloadHandler.text);
-                    // parse the results to get values 
-                    var responseData = JsonUtility.FromJson<OpenAIAPI>(request.downloadHandler.text);
-                    // sometimes contains 2 empty lines at start?
-                    var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n');
+                Debug.LogError(request.error);
+                responseHandler?.Invoke(null);
+            }
+            else
+            {
+                Debug.Log(request.downloadHandler.text);
+                // parse the results to get values 
+                var responseData = JsonUtility.FromJson<OpenAIAPI>(request.downloadHandler.text);
+                // sometimes contains 2 empty lines at start?
+                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n');
 
-                    responseHandler?.Invoke(generatedText);
-                }
+                responseHandler?.Invoke(generatedText);
+            }
 
-                _isRunning = false;
-            };
-        } // execute
+            _isRunning = false;
+            
+            request.Dispose();
+            request.uploadHandler.Dispose();
+            request.downloadHandler.Dispose();
+        }
 
         private void LoadAPIKey()
         {
