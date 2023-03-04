@@ -545,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcDescriptor: {fileID: 11400000, guid: ab682a60bd4de53449d1207ec3d6587e, type: 2}
   inputPrompt: {fileID: 4921800892313657897}
+  button: {fileID: 4921800891996082962}
   dialoguePrefab: {fileID: 1746012858060977915, guid: fe82d6c5d52892a4da684c6b79f315b6, type: 3}
 --- !u!1 &4921800892623531431
 GameObject:

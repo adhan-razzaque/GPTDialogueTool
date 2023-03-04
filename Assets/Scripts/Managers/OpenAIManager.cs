@@ -19,8 +19,15 @@ namespace Managers
         [SerializeField] private string modelName = "text-davinci-003";
 
         // Private state
-        private string _apiKey = null;
-        private bool _isRunning = false;
+        private string _apiKey;
+        private bool _isRunning;
+        private bool _lockInput;
+
+        private void OnEnable()
+        {
+            Dialogue.OnDialogueStarted += () => { _lockInput = true; };
+            Dialogue.OnDialogueFinished += () => { _lockInput = false; };
+        }
 
         private void Start()
         {
@@ -29,6 +36,12 @@ namespace Managers
 
         public void Execute(string prompt, Action<string> responseHandler)
         {
+            Debug.Log(prompt);
+            if (_lockInput)
+            {
+                Debug.Log("Dialogue locked");
+            }
+            
             if (_isRunning)
             {
                 Debug.LogError("Already running");
@@ -46,7 +59,7 @@ namespace Managers
             var requestData = new RequestData()
             {
                 model = modelName,
-                prompt = prompt,
+                prompt = prompt + "\n\"",
                 temperature = 0.7f,
                 max_tokens = 256,
                 top_p = 1,
@@ -80,7 +93,7 @@ namespace Managers
                 // parse the results to get values 
                 var responseData = JsonUtility.FromJson<OpenAIAPI>(request.downloadHandler.text);
                 // sometimes contains 2 empty lines at start?
-                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n');
+                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n').TrimStart('\"').TrimEnd('\"');
 
                 responseHandler?.Invoke(generatedText);
             }

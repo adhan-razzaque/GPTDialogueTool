@@ -8,6 +8,9 @@ using UnityEngine.InputSystem.UI;
 
 public class Dialogue : MonoBehaviour
 {
+    public static Action OnDialogueStarted;
+    public static Action OnDialogueFinished;
+    
     public TextMeshProUGUI textComponent;
 
     public string line;
@@ -32,15 +35,22 @@ public class Dialogue : MonoBehaviour
         {
             StopAllCoroutines();
             textComponent.text = line;
-            _finished = true;
+            DialogueFinished();
             return;
         }
         
         Destroy(gameObject);
     }
 
+    private void DialogueFinished()
+    {
+        _finished = true;
+        OnDialogueFinished?.Invoke();
+    }
+
     private void StartDialogue()
     {
+        OnDialogueStarted?.Invoke();
         StartCoroutine(TypeLine());
     }
 
@@ -52,6 +62,6 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(1/charactersPerSecond);
         }
 
-        _finished = true;
+        DialogueFinished();
     }
 }

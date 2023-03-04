@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Managers;
@@ -9,7 +10,14 @@ public class NPC : MonoBehaviour
 {
     public NPCDescriptor npcDescriptor;
     public TMP_InputField inputPrompt;
+    public Button button;
     public GameObject dialoguePrefab;
+
+    private void OnEnable()
+    {
+        Dialogue.OnDialogueStarted += () => { button.interactable = false; };
+        Dialogue.OnDialogueFinished += () => { button.interactable = true; };
+    }
 
     private void OnResponseReceived(string response)
     {

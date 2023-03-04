@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu]
 public class NPCDescriptor : ScriptableObject
@@ -34,7 +32,7 @@ public class NPCDescriptor : ScriptableObject
 
     private static string GetMoodLevel(MoodLevel moodLevel)
     {
-        return moodLevel.ToString().ToLower();
+        return Enum.GetName(typeof(MoodLevel), moodLevel)?.ToLower();
     }
 
     public string GetMoodString(Mood mood)
@@ -44,7 +42,7 @@ public class NPCDescriptor : ScriptableObject
 
     public string GetNpcString()
     {
-        var stringBuilder = new StringBuilder("You are an npc");
+        var stringBuilder = new StringBuilder("You are an npc ");
 
         if (npcName.Length > 0)
         {
@@ -71,7 +69,7 @@ public class NPCDescriptor : ScriptableObject
             stringBuilder.Append($"{background}, ");
         }
 
-        stringBuilder.Append(" and you are in this game. ");
+        stringBuilder.Append("and you are in this game. ");
 
         if (moods.Count > 0)
         {
@@ -92,6 +90,6 @@ public class NPCDescriptor : ScriptableObject
     {
         var description = GetNpcString();
 
-        return $"{description} The player tells you \"{prompt}\". What is your response?";
+        return $"{description} The player tells you \"{prompt}\". What is your response? Start with \"{name}:\"";
     }
 }
