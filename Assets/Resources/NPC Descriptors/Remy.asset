@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2321f9fde2b07247b718666ec1d317c, type: 3}
+  m_Name: Remy
+  m_EditorClassIdentifier: 
+  npcName: Remy
+  temperament: smooth-talking, level-headed
+  background: Doctor
+  gender: non-binary
+  age: 28
+  moods:
+  - name: Happy
+    level: 2
+  - name: Relaxed
+    level: 3
+  - name: Angry
+    level: 0
