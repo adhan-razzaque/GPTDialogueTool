@@ -41,10 +41,16 @@ namespace Managers
             {
                 Debug.Log("Dialogue locked");
             }
-            
+
             if (_isRunning)
             {
                 Debug.LogError("Already running");
+                return;
+            }
+
+            if (_apiKey.Length == 0)
+            {
+                Debug.LogError("No api key");
                 return;
             }
 
@@ -93,13 +99,14 @@ namespace Managers
                 // parse the results to get values 
                 var responseData = JsonUtility.FromJson<OpenAIAPI>(request.downloadHandler.text);
                 // sometimes contains 2 empty lines at start?
-                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n').TrimStart('\"').TrimEnd('\"');
+                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n').TrimStart('\"')
+                    .TrimEnd('\"');
 
                 responseHandler?.Invoke(generatedText);
             }
 
             _isRunning = false;
-            
+
             request.Dispose();
             request.uploadHandler.Dispose();
             request.downloadHandler.Dispose();
@@ -111,6 +118,12 @@ namespace Managers
 
             // MODIFY path to API key if needed
             var keyPath = Path.Combine(Application.streamingAssetsPath, "secretkey.txt");
+
+#if UNITY_WEBGL
+            StartCoroutine(RequestStreamingAssets(keyPath));
+            return;
+#endif
+
             if (File.Exists(keyPath) == false)
             {
                 Debug.LogError("Apikey missing: " + keyPath);
@@ -119,6 +132,31 @@ namespace Managers
             //Debug.Log("Load apikey: " + keyPath);
             _apiKey = File.ReadAllText(keyPath).Trim();
             Debug.Log("API key loaded, len= " + _apiKey.Length);
+        }
+
+        private IEnumerator RequestStreamingAssets(string uri)
+        {
+            using var webRequest = UnityWebRequest.Get(uri);
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
+                    _apiKey = webRequest.downloadHandler.text.Trim();
+                    Debug.Log("API key loaded, len= " + _apiKey.Length);
+                    break;
+            }
+            
+            webRequest.Dispose();
         }
     }
 }
