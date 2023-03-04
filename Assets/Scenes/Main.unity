@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPC 3
+  m_text: Remy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPC 1
+  m_text: Billy Bob
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPC 4
+  m_text: Sabrina
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -665,6 +665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4921800892542310969, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: npcDescriptor
+      value: 
+      objectReference: {fileID: 11400000, guid: a5b661fe5641674419755d629a087b2c, type: 2}
     - target: {fileID: 4921800892939616222, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_SizeDelta.x
       value: 260
@@ -1026,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4921800892542310969, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: npcDescriptor
+      value: 
+      objectReference: {fileID: 11400000, guid: ed6c21e030ad67a40a7f0a57037b2e28, type: 2}
     - target: {fileID: 4921800892939616222, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_SizeDelta.x
       value: 260
@@ -1108,6 +1116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4921800892542310969, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: npcDescriptor
+      value: 
+      objectReference: {fileID: 11400000, guid: caa31aef5d626914f86cb66dac6f660c, type: 2}
     - target: {fileID: 4921800892939616222, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_SizeDelta.x
       value: 260
@@ -1189,7 +1201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPC 2
+  m_text: Hiro
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1324,7 +1336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPC 5
+  m_text: Y.T.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1460,6 +1472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4921800892542310969, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: npcDescriptor
+      value: 
+      objectReference: {fileID: 11400000, guid: 26b4e3711e300124baaa7fe5d3119b11, type: 2}
     - target: {fileID: 4921800892939616222, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_SizeDelta.x
       value: 260
@@ -1490,6 +1506,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4921800891996082962, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4921800892542310966, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_RootOrder
       value: 4
