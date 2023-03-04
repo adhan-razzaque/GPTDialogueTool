@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -7,28 +8,41 @@ using UnityEngine.Serialization;
 [CreateAssetMenu]
 public class NPCDescriptor : ScriptableObject
 {
+    [Serializable]
     public enum MoodLevel
     {
-        Not = 0,
-        ALittle = 1,
-        ALot = 2,
-        Extremely = 3
+        Not,
+        ALittle,
+        Moderately,
+        Very,
+        Extremely
+    }
+    
+    [Serializable]
+    public struct Mood
+    {
+        public string name;
+        public MoodLevel level;
     }
 
-    private string[] _moodLevelStrings = {"not", "a little", "a lot", "extremely"};
-    
     public string npcName;
     public string temperament;
     public string background;
     public string gender;
     public int age;
+    public List<Mood> moods;
 
-    public string GetMoodLevel(MoodLevel moodLevel)
+    private static string GetMoodLevel(MoodLevel moodLevel)
     {
-        return _moodLevelStrings[moodLevel.GetHashCode()];
+        return moodLevel.ToString().ToLower();
     }
 
-    public string BuildGptDescriptor(string prompt)
+    public string GetMoodString(Mood mood)
+    {
+        return $"{GetMoodLevel(mood.level)} {mood.name}";
+    }
+
+    public string GetNpcString()
     {
         var stringBuilder = new StringBuilder("You are an npc");
 
@@ -57,8 +71,27 @@ public class NPCDescriptor : ScriptableObject
             stringBuilder.Append($"{background}, ");
         }
 
-        stringBuilder.Append($"the player tells you \"{prompt}\". What is your response?");
+        stringBuilder.Append(" and you are in this game. ");
+
+        if (moods.Count > 0)
+        {
+            stringBuilder.Append("You feel ");
+            
+            foreach (var mood in moods)
+            {
+                stringBuilder.Append($"{GetMoodString(mood)}, ");
+            }
+
+            stringBuilder.Append("right now.");
+        }
 
         return stringBuilder.ToString();
+    }
+
+    public string BuildGptDescriptor(string prompt)
+    {
+        var description = GetNpcString();
+
+        return $"{description} The player tells you \"{prompt}\". What is your response?";
     }
 }
