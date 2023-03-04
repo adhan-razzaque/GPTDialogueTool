@@ -20,7 +20,8 @@ public class NPC : MonoBehaviour
 
     public void OnSubmit()
     {
-        string prompt = npcDescriptor.BuildGptDescriptor(inputPrompt.text);
+        var prompt = npcDescriptor.BuildGptDescriptor(inputPrompt.text);
+        inputPrompt.text = "";
         OpenAIManager.Instance.Execute(prompt, OnResponseReceived);
     }
 }
