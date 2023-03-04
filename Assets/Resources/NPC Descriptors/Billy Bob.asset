@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2321f9fde2b07247b718666ec1d317c, type: 3}
-  m_Name: Billy Joe Bob
+  m_Name: Billy Bob
   m_EditorClassIdentifier: 
-  npcName: Billy Joe Bob
+  npcName: Billy Bob
   temperament: Hard-working
   background: Farmer
   gender: Male

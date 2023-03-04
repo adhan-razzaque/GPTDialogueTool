@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Sabrina
   temperament: Caring, Curious
-  background: Teacher
+  background: Teacher, Bilingual in English and Spanish
   gender: Female
   age: 21
   moods:
