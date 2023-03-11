@@ -10,7 +10,7 @@ public class NPCDescriptor : ScriptableObject
     public enum MoodLevel
     {
         Not,
-        ALittle,
+        Slightly,
         Moderately,
         Very,
         Extremely
