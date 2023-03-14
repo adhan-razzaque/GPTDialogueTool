@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
@@ -11,6 +12,7 @@ public class NPC : MonoBehaviour
     public NPCDescriptor npcDescriptor;
     public TMP_InputField inputPrompt;
     public Button button;
+    public TMP_Text nameTag;
     public GameObject dialoguePrefab;
 
     private Canvas _mainCanvas;
@@ -18,10 +20,19 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        
         _mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         _isMainCanvasNull = _mainCanvas == null;
         if (_isMainCanvasNull) Debug.Log("Could not find main canvas.");
+        
+        SetNameTag();
+    }
+
+    private void SetNameTag()
+    {
+        if (nameTag == null) return;
+        if (npcDescriptor == null) return;
+
+        nameTag.text = npcDescriptor.npcName;
     }
 
     private void OnEnable()

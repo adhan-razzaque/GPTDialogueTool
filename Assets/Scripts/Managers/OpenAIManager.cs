@@ -121,8 +121,7 @@ namespace Managers
 
 #if UNITY_WEBGL
             StartCoroutine(RequestStreamingAssets(keyPath));
-            return;
-#endif
+#else
 
             if (File.Exists(keyPath) == false)
             {
@@ -132,6 +131,7 @@ namespace Managers
             //Debug.Log("Load apikey: " + keyPath);
             _apiKey = File.ReadAllText(keyPath).Trim();
             Debug.Log("API key loaded, len= " + _apiKey.Length);
+#endif
         }
 
         private IEnumerator RequestStreamingAssets(string uri)

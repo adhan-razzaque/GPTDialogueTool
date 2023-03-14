@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Remy
   m_EditorClassIdentifier: 
   npcName: Remy
-  temperament: smooth-talking, level-headed
-  background: Doctor
   gender: non-binary
   age: 28
+  temperament: smooth-talking, level-headed
+  background: Doctor
+  publicImage: wearing a nice pair of boots, pants, and a slim sweater
   moods:
   - name: Happy
     level: 2

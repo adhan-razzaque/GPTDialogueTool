@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sabrina
   m_EditorClassIdentifier: 
   npcName: Sabrina
-  temperament: Caring, Curious
-  background: Teacher, Bilingual in English and Spanish
   gender: Female
   age: 21
+  temperament: Caring, Curious
+  background: Teacher, Bilingual in English and Spanish
+  publicImage: wearing a pastel colored dress, showing your thinly inked tattoos,
+    and sporting white sneakers
   moods:
   - name: Anxious
     level: 1

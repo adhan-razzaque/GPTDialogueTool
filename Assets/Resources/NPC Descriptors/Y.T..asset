@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Y.T.
   m_EditorClassIdentifier: 
   npcName: Y.T.
-  temperament: Fearless, Dependable
-  background: Courier
   gender: Female
   age: 15
+  temperament: Fearless, Dependable
+  background: Courier
+  publicImage: wearing a courier outfit complete with barcodes, overalls, and sporty
+    sneakers
   moods:
   - name: Annoyed
     level: 1

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Billy Bob
   m_EditorClassIdentifier: 
   npcName: Billy Bob
-  temperament: Hard-working
-  background: Farmer
   gender: Male
   age: 42
+  temperament: Hard-working
+  background: Farmer
+  publicImage: Stocky, covered in the days sweat and dirt, wearing worn down overalls
   moods:
   - name: Happy
     level: 2

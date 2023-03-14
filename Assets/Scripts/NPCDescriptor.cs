@@ -24,10 +24,14 @@ public class NPCDescriptor : ScriptableObject
     }
 
     public string npcName;
-    public string temperament;
-    public string background;
     public string gender;
     public int age;
+    
+    [Header("Description")]
+    public string temperament;
+    public string background;
+    public string publicImage;
+
     public List<Mood> moods;
 
     private static string GetMoodLevel(MoodLevel moodLevel)
@@ -43,13 +47,13 @@ public class NPCDescriptor : ScriptableObject
     public string GetNpcString()
     {
         var stringBuilder = new StringBuilder("You are an npc ");
-
-        if (npcName.Length > 0)
+        
+        if (!string.IsNullOrEmpty(npcName))
         {
             stringBuilder.Append($"named {npcName}, ");
         }
-        
-        if (gender.Length > 0)
+
+        if (!string.IsNullOrEmpty(gender))
         {
             stringBuilder.Append($"a {gender}, ");
         }
@@ -59,14 +63,19 @@ public class NPCDescriptor : ScriptableObject
             stringBuilder.Append($"a {age} year old, ");
         }
 
-        if (temperament.Length > 0)
+        if (!string.IsNullOrEmpty(temperament))
         {
             stringBuilder.Append($"{temperament}, ");
         }
 
-        if (background.Length > 0)
+        if (!string.IsNullOrEmpty(background))
         {
             stringBuilder.Append($"{background}, ");
+        }
+
+        if (!string.IsNullOrEmpty(publicImage))
+        {
+            stringBuilder.Append($"{publicImage}, ");
         }
 
         stringBuilder.Append("and you are in this game. ");
@@ -74,7 +83,7 @@ public class NPCDescriptor : ScriptableObject
         if (moods.Count > 0)
         {
             stringBuilder.Append("You feel ");
-            
+
             foreach (var mood in moods)
             {
                 stringBuilder.Append($"{GetMoodString(mood)}, ");
@@ -89,7 +98,6 @@ public class NPCDescriptor : ScriptableObject
     public string BuildGptDescriptor(string prompt)
     {
         var description = GetNpcString();
-
-        return $"{description} The player tells you \"{prompt}\". What is your response? Start with \"{name}:\"";
+        return $"{description} The player tells you \"{prompt}\". What is your response and feeling? Start with \"{name}:\". End with a new line, then \"Feeling:\", and finally the moods you are feeling.";
     }
 }

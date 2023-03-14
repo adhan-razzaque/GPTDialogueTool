@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Hiro
   m_EditorClassIdentifier: 
   npcName: Hiro
-  temperament: Brilliant, Helpful, Pushover
-  background: Hacker, Programmer, Swordsman
   gender: Male
   age: 26
+  temperament: Brilliant, Helpful, Pushover
+  background: Hacker, Programmer, Swordsman
+  publicImage: lean, wearing a dark hacker outfit, carrying your two swords, long
+    dreadlocks
   moods:
   - name: Focused
     level: 4
