@@ -13,6 +13,17 @@ public class NPC : MonoBehaviour
     public Button button;
     public GameObject dialoguePrefab;
 
+    private Canvas _mainCanvas;
+    private bool _isMainCanvasNull;
+
+    private void Start()
+    {
+        
+        _mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
+        _isMainCanvasNull = _mainCanvas == null;
+        if (_isMainCanvasNull) Debug.Log("Could not find main canvas.");
+    }
+
     private void OnEnable()
     {
         Dialogue.OnDialogueStarted += () => { button.interactable = false; };
@@ -22,7 +33,8 @@ public class NPC : MonoBehaviour
     private void OnResponseReceived(string response)
     {
         Debug.Log($"Received response: {response}");
-        var newDialogue = Instantiate(dialoguePrefab).GetComponent<Dialogue>();
+        var parentTransform = _isMainCanvasNull ? transform : _mainCanvas.transform;
+        var newDialogue = Instantiate(dialoguePrefab, parentTransform).GetComponent<Dialogue>();
         newDialogue.line = response;
     }
 
