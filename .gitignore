@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # API Key
 /[Aa]ssets/[Ss]treamingAssets/secretkey.txt
+
+# MacOS
+.DS_Store
