@@ -59,7 +59,7 @@ namespace Managers
             StartCoroutine(SendRequest(prompt, responseHandler));
         } // execute
 
-        private IEnumerator SendRequest(string prompt, Action<string> responseHandler)
+        protected IEnumerator SendRequest(string prompt, Action<string> responseHandler)
         {
             // fill in request data
             var requestData = new RequestData()

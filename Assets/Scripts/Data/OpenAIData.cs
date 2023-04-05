@@ -1,5 +1,6 @@
 namespace Data
 {
+    // Request Formats
     [System.Serializable]
     public class RequestData
     {
@@ -13,6 +14,14 @@ namespace Data
     }
 
     [System.Serializable]
+    public class ChatRequestData
+    {
+        public string model;
+        public Message[] messages;
+    }
+
+    // Response Formats
+    [System.Serializable]
     public class OpenAIAPI
     {
         public string id;
@@ -24,12 +33,38 @@ namespace Data
     }
 
     [System.Serializable]
+    public class OpenAIChatAPI
+    {
+        public string id;
+        public string @object;
+        public int created;
+        public ChatChoice[] choices;
+        public Usage usage;
+    }
+
+    // Intermediate Pieces
+    [System.Serializable]
     public class Choice
     {
         public string text;
         public int index;
         public object logprobs;
         public string finish_reason;
+    }
+
+    [System.Serializable]
+    public class ChatChoice
+    {
+        public int index;
+        public Message message;
+        public string finish_reason;
+    }
+
+    [System.Serializable]
+    public class Message
+    {
+        public string role;
+        public string content;
     }
 
     [System.Serializable]
