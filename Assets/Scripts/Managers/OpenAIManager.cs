@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 
 namespace Managers
 {
-    public class OpenAIManager : Singleton<OpenAIManager>
+    public class OpenAIManager : Singleton<OpenAIManager>, IGPTCompletion
     {
         // OpenAI API endpoint
         private const string URL = "https://api.openai.com/v1/completions";
@@ -34,7 +34,7 @@ namespace Managers
             LoadAPIKey();
         }
 
-        public void Execute(string prompt, Action<string> responseHandler)
+        public void Execute(string prompt, Action<string> responseHandler, bool storeMessage = false)
         {
             Debug.Log(prompt);
             if (_lockInput)
@@ -119,7 +119,7 @@ namespace Managers
             // MODIFY path to API key if needed
             var keyPath = Path.Combine(Application.streamingAssetsPath, "secretkey.txt");
 
-#if UNITY_WEBGL
+#if (UNITY_WEBGL && !UNITY_EDITOR)
             StartCoroutine(RequestStreamingAssets(keyPath));
 #else
 

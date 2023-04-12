@@ -8,9 +8,9 @@ using UnityEngine.Networking;
 
 namespace Managers
 {
-    public class OpenAIChatManager: Singleton<OpenAIChatManager>
+    public class OpenAIChatManager : Singleton<OpenAIChatManager>, IGPTCompletion
     {
-         // OpenAI API endpoint
+        // OpenAI API endpoint
         private const string URL = "https://api.openai.com/v1/chat/completions";
 
         // OpenAI model to use
@@ -20,7 +20,7 @@ namespace Managers
         private string _apiKey;
         private bool _isRunning;
         private bool _lockInput;
-        private List<Message> _messages;
+        private readonly List<Message> _messages = new();
         private readonly Message _system = new Message() {content = "", role = "system"};
 
         private void OnEnable()
@@ -36,7 +36,7 @@ namespace Managers
 
         public void ClearMessages()
         {
-            _messages.RemoveRange(0,_messages.Count);
+            _messages.RemoveRange(0, _messages.Count);
             _messages.Add(_system);
         }
 
@@ -45,7 +45,7 @@ namespace Managers
             _system.content = prompt;
         }
 
-        public void Execute(string prompt, Action<string> responseHandler, bool storeMessage = true)
+        public void Execute(string prompt, Action<string> responseHandler, bool storeMessage = false)
         {
             Debug.Log(prompt);
 
@@ -73,7 +73,7 @@ namespace Managers
                 role = "user",
                 content = prompt
             };
-            
+
             if (storeMessage)
             {
                 _messages.Add(message);
@@ -121,9 +121,10 @@ namespace Managers
             {
                 Debug.Log(request.downloadHandler.text);
                 // parse the results to get values 
-                var responseData = JsonUtility.FromJson<OpenAIAPI>(request.downloadHandler.text);
+                var responseData = JsonUtility.FromJson<OpenAIChatAPI>(request.downloadHandler.text);
                 // sometimes contains 2 empty lines at start?
-                var generatedText = responseData.choices[0].text.TrimStart('\n').TrimStart('\n').TrimStart('\"')
+                var generatedText = responseData.choices[0].message.content.TrimStart('\n').TrimStart('\n')
+                    .TrimStart('\"')
                     .TrimEnd('\"');
 
                 responseHandler?.Invoke(generatedText);
@@ -143,7 +144,7 @@ namespace Managers
             // MODIFY path to API key if needed
             var keyPath = Path.Combine(Application.streamingAssetsPath, "secretkey.txt");
 
-#if UNITY_WEBGL
+#if (UNITY_WEBGL && !UNITY_EDITOR)
             StartCoroutine(RequestStreamingAssets(keyPath));
 #else
 
@@ -179,7 +180,7 @@ namespace Managers
                     Debug.Log("API key loaded, len= " + _apiKey.Length);
                     break;
             }
-            
+
             webRequest.Dispose();
         }
     }

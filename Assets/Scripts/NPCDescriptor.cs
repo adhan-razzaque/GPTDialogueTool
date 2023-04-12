@@ -98,6 +98,7 @@ public class NPCDescriptor : ScriptableObject
     public string BuildGptDescriptor(string prompt)
     {
         var description = GetNpcString();
+        // return $"The player tells you \"{prompt}\". What is your response? Start with \"{name}:\".";
         return $"{description} The player tells you \"{prompt}\". What is your response and feeling? Start with \"{name}:\". End with a new line, then \"Feeling:\", and finally the moods you are feeling.";
     }
 }

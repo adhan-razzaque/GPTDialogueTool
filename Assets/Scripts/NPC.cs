@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
@@ -23,7 +19,7 @@ public class NPC : MonoBehaviour
         _mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         _isMainCanvasNull = _mainCanvas == null;
         if (_isMainCanvasNull) Debug.Log("Could not find main canvas.");
-        
+
         SetNameTag();
     }
 
@@ -52,7 +48,9 @@ public class NPC : MonoBehaviour
     public void OnSubmit()
     {
         var prompt = npcDescriptor.BuildGptDescriptor(inputPrompt.text);
+        // var prompt = inputPrompt.text;
         inputPrompt.text = "";
-        OpenAIManager.Instance.Execute(prompt, OnResponseReceived);
+        OpenAIChatManager.Instance.SetSystemMessage(npcDescriptor.GetNpcString());
+        OpenAIChatManager.Instance.Execute(prompt, OnResponseReceived, true);
     }
 }
