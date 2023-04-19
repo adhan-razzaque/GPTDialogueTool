@@ -63,7 +63,7 @@ public class NPC : MonoBehaviour
         Debug.Log($"Received response: {response}");
         var parentTransform = _isMainCanvasNull ? transform : _mainCanvas.transform;
         var newDialogue = Instantiate(dialoguePrefab, parentTransform).GetComponent<Dialogue>();
-        newDialogue.line = response;
+        newDialogue.line = $"{npcDescriptor.npcName}: {response}";
     }
     
     private async void HandleInput(string prompt)
