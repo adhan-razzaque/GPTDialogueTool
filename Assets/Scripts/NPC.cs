@@ -24,24 +24,7 @@ public class NPC : MonoBehaviour
         _isMainCanvasNull = _mainCanvas == null;
         if (_isMainCanvasNull) Debug.Log("Could not find main canvas.");
 
-        SetNameTag();
-
-        var api = new OpenAIAPI();
-        _chat = api.Chat.CreateConversation();
-        
-        // System message to define how to NPC interacts
-        _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were an npc in a game. " + 
-                                  npcDescriptor.GetNpcString() + " You must only respond as this npc. " +
-                                  "You only respond as if you were in a natural conversation, not as an AI helper." +
-                                  "Your goal is to behave as an npc in a game. You must emulate the NPC's emotions too");
-        
-        // Provide some examples of the NPC interaction
-        _chat.AppendUserInput("What is your name?");
-        _chat.AppendExampleChatbotOutput($"My name is {npcDescriptor.npcName}.");
-        _chat.AppendUserInput("How old are you?");
-        _chat.AppendExampleChatbotOutput($"I am {npcDescriptor.age} years old.");
-        _chat.AppendUserInput("How are you feeling?");
-        _chat.AppendExampleChatbotOutput($"I am feeling {npcDescriptor.GetAllMoods()}");
+        ResetChat();
     }
 
     private void SetNameTag()
@@ -82,5 +65,27 @@ public class NPC : MonoBehaviour
         // OpenAIChatManager.Instance.SetSystemMessage(npcDescriptor.GetNpcString());
         // OpenAIChatManager.Instance.Execute(prompt, OnResponseReceived, true);
         HandleInput(prompt);
+    }
+
+    public void ResetChat()
+    {
+        var api = new OpenAIAPI();
+        _chat = api.Chat.CreateConversation();
+        
+        // System message to define how to NPC interacts
+        _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were an npc in a game. " + 
+                                  npcDescriptor.GetNpcString() + " You must only respond as this npc. " +
+                                  "You only respond as if you were in a natural conversation, not as an AI helper." +
+                                  "Your goal is to behave as an npc in a game. You must emulate the NPC's emotions too");
+        
+        // Provide some examples of the NPC interaction
+        _chat.AppendUserInput("What is your name?");
+        _chat.AppendExampleChatbotOutput($"My name is {npcDescriptor.npcName}.");
+        _chat.AppendUserInput("How old are you?");
+        _chat.AppendExampleChatbotOutput($"I am {npcDescriptor.age} years old.");
+        _chat.AppendUserInput("How are you feeling?");
+        _chat.AppendExampleChatbotOutput($"I am feeling {npcDescriptor.GetAllMoods()}");
+        
+        SetNameTag();
     }
 }
