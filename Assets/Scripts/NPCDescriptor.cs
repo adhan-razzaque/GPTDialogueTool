@@ -23,6 +23,22 @@ public class NPCDescriptor : ScriptableObject
         public MoodLevel level;
     }
 
+    [Serializable]
+    public enum LikeLevel
+    {
+        Hate,
+        Dislike,
+        Like,
+        Love
+    }
+
+    [Serializable]
+    public struct Relationship
+    {
+        public LikeLevel level;
+        public string name;
+    }
+
     public string npcName;
     public string gender;
     public int age;
@@ -33,15 +49,52 @@ public class NPCDescriptor : ScriptableObject
     public string publicImage;
 
     public List<Mood> moods;
+    public List<Relationship> relationships;
 
-    private static string GetMoodLevel(MoodLevel moodLevel)
+    private static string GetLevel<T>(T level)
     {
-        return Enum.GetName(typeof(MoodLevel), moodLevel)?.ToLower();
+        return Enum.GetName(typeof(T), level)?.ToLower();
     }
 
     public string GetMoodString(Mood mood)
     {
-        return $"{GetMoodLevel(mood.level)} {mood.name}";
+        return $"{GetLevel(mood.level)} {mood.name}";
+    }
+
+    public string GetAllMoods()
+    {
+        var stringBuilder = new StringBuilder();
+        var counter = 0;
+        
+        foreach (var mood in moods)
+        {
+            stringBuilder.Append(GetMoodString(mood));
+
+            if (++counter != moods.Count)
+            {
+                stringBuilder.Append(", ");
+            }
+        }
+
+        return stringBuilder.ToString();
+    }
+    
+    public string GetAllRelationships()
+    {
+        var stringBuilder = new StringBuilder();
+        var counter = 0;
+        
+        foreach (var relationship in relationships)
+        {
+            stringBuilder.Append($"{GetLevel(relationship.level)} {relationship.name}");
+
+            if (++counter != relationships.Count)
+            {
+                stringBuilder.Append(", ");
+            }
+        }
+
+        return stringBuilder.ToString();
     }
 
     public string GetNpcString()
@@ -84,12 +137,18 @@ public class NPCDescriptor : ScriptableObject
         {
             stringBuilder.Append("You feel ");
 
-            foreach (var mood in moods)
-            {
-                stringBuilder.Append($"{GetMoodString(mood)}, ");
-            }
+            stringBuilder.Append(GetAllMoods());
+            
+            stringBuilder.Append("right now. ");
+        }
+        
+        if (relationships.Count > 0)
+        {
+            stringBuilder.Append("Your relationships are that you ");
 
-            stringBuilder.Append("right now.");
+            stringBuilder.Append(GetAllRelationships());
+
+            stringBuilder.Append(". ");
         }
 
         return stringBuilder.ToString();

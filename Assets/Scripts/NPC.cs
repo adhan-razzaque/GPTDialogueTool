@@ -32,13 +32,16 @@ public class NPC : MonoBehaviour
         // System message to define how to NPC interacts
         _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were an npc in a game. " + 
                                   npcDescriptor.GetNpcString() + " You must only respond as this npc. " +
-                                  "You only respond as if you were in a natural conversation, not as an AI helper.");
+                                  "You only respond as if you were in a natural conversation, not as an AI helper." +
+                                  "Your goal is to behave as an npc in a game. You must emulate the NPC's emotions too");
         
         // Provide some examples of the NPC interaction
         _chat.AppendUserInput("What is your name?");
         _chat.AppendExampleChatbotOutput($"My name is {npcDescriptor.npcName}.");
         _chat.AppendUserInput("How old are you?");
         _chat.AppendExampleChatbotOutput($"I am {npcDescriptor.age} years old.");
+        _chat.AppendUserInput("How are you feeling?");
+        _chat.AppendExampleChatbotOutput($"I am feeling {npcDescriptor.GetAllMoods()}");
     }
 
     private void SetNameTag()

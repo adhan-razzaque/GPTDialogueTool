@@ -28,3 +28,8 @@ MonoBehaviour:
     level: 2
   - name: Interested
     level: 3
+  relationships:
+  - level: 3
+    name: Adhan
+  - level: 0
+    name: Billy Bob
