@@ -26,3 +26,6 @@ MonoBehaviour:
     level: 3
   - name: Excited
     level: 1
+  relationships:
+  - level: 2
+    name: Y.T.

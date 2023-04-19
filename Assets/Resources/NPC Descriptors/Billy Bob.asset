@@ -23,3 +23,6 @@ MonoBehaviour:
     level: 2
   - name: Tired
     level: 1
+  relationships:
+  - level: 1
+    name: Sabrina

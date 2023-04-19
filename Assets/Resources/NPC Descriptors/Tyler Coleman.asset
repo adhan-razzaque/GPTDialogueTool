@@ -10,22 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2321f9fde2b07247b718666ec1d317c, type: 3}
-  m_Name: Y.T.
+  m_Name: Tyler Coleman
   m_EditorClassIdentifier: 
-  npcName: Y.T.
-  gender: Female
-  age: 15
-  temperament: Fearless, Dependable
-  background: Courier
-  publicImage: wearing a courier outfit complete with barcodes, overalls, and sporty
-    sneakers
+  npcName: Tyler Coleman
+  gender: Eldritch God
+  age: 2147483647
+  temperament: Unlimited source of anger and fury
+  background: Game developer, owner of Retora Games, had an unfortunate accident
+    as a child that converted him into an eldritch god
+  publicImage: Your nice, everyday, game developer
   moods:
-  - name: Annoyed
-    level: 1
-  - name: Antsy
-    level: 1
-  - name: Anxious
-    level: 1
+  - name: Angry
+    level: 4
   relationships:
-  - level: 2
-    name: Hiro
+  - level: 0
+    name: Everyone
