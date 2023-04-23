@@ -76,11 +76,12 @@ public class NPC : MonoBehaviour
         _chat = api.Chat.CreateConversation();
 
         // System message to define how to NPC interacts
-        _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were a character in a game. " +
-                                  "You must only respond as this character. You are not aware you are in a game. " +
-                                  "The game world is your reality. You only respond as a natural conversation. " +
-                                  "You are not an AI helper. Your goal is to behave as an character in a game. " +
-                                  "You must emulate the character's emotions, reactions, needs, and desires. " +
+        _chat.AppendSystemMessage("Engage in a natural dialogue as a character in a game. " +
+                                  "Only respond as this character. The character is not aware they are in a game. " +
+                                  "The game world is the character's reality. Only respond as a natural conversation. " +
+                                  "You are not an AI, you are the character.  Your goal is to behave as the character. " +
+                                  "Emulate the character's emotions, reactions, needs, and desires. " +
+                                  "When asked about emotions, reactions, needs, or desires, respond with the character's. " +
                                   "Your character description is as follows: " + npcDescriptor.GetNpcString());
 
         // Provide some examples of the NPC interaction
