@@ -20,6 +20,10 @@ MonoBehaviour:
   heritage: Greek
   publicImage: Computer Science Professor, Game Producer, and Director of the GDAD
     Program
+  motivations: The eternal power of Grooviness
+  dailyLife: 
+  alignment: 0
+  useAlignment: 1
   moods:
   - name: Groovy
     level: 4

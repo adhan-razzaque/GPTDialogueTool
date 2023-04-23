@@ -18,10 +18,16 @@ MonoBehaviour:
   temperament: Unlimited source of anger and fury
   background: Game developer, owner of Retora Games, had an unfortunate accident
     as a child that converted him into an eldritch god
+  heritage: 
   publicImage: Your nice, everyday, game developer
+  motivations: Destroy the universe with his video game empire
+  dailyLife: 
+  alignment: 8
+  useAlignment: 1
   moods:
   - name: Angry
     level: 4
   relationships:
   - level: 0
     name: Everyone
+  knownLanguages: []

@@ -40,6 +40,20 @@ public class NPCDescriptor : ScriptableObject
         public string name;
     }
 
+    [Serializable]
+    public enum Alignment
+    {
+        LawfulGood,
+        NeutralGood,
+        ChaoticGood,
+        LawfulNeutral,
+        Neutral,
+        ChaoticNeutral,
+        LawfulEvil,
+        NeutralEvil,
+        ChaoticEvil
+    }
+
     public string npcName;
     public string gender;
     public int age;
@@ -49,7 +63,14 @@ public class NPCDescriptor : ScriptableObject
     public string background;
     public string heritage;
     public string publicImage;
+    public string motivations;
+    public string dailyLife;
 
+    [Header("Alignment")]
+    public Alignment alignment;
+    public bool useAlignment;
+    
+    [Header("Additional Traits")]
     public List<Mood> moods;
     public List<Relationship> relationships;
     public List<string> knownLanguages;
@@ -106,40 +127,53 @@ public class NPCDescriptor : ScriptableObject
         
         if (!string.IsNullOrEmpty(npcName))
         {
-            stringBuilder.Append($"named {npcName}, ");
+            stringBuilder.Append($"named {npcName}. ");
         }
 
         if (!string.IsNullOrEmpty(gender))
         {
-            stringBuilder.Append($"a {gender}, ");
+            stringBuilder.Append($"You are a {gender}. ");
         }
 
         if (age != 0)
         {
-            stringBuilder.Append($"a {age} year old, ");
+            stringBuilder.Append($"You are {age} years old. ");
         }
 
         if (!string.IsNullOrEmpty(temperament))
         {
-            stringBuilder.Append($"{temperament}, ");
+            stringBuilder.Append($"Your temperament is: {temperament}. ");
         }
 
         if (!string.IsNullOrEmpty(background))
         {
-            stringBuilder.Append($"{background}, ");
+            stringBuilder.Append($"Your background is: {background}. ");
         }
         
         if (!string.IsNullOrEmpty(heritage))
         {
-            stringBuilder.Append($"{heritage}, ");
+            stringBuilder.Append($"Your heritage is: {heritage}. ");
         }
 
         if (!string.IsNullOrEmpty(publicImage))
         {
-            stringBuilder.Append($"{publicImage}, ");
+            stringBuilder.Append($"Your public image is: {publicImage}. ");
+        }
+        
+        if (!string.IsNullOrEmpty(motivations))
+        {
+            stringBuilder.Append($"Your motivations are: {motivations}. ");
+        }
+        
+        if (!string.IsNullOrEmpty(dailyLife))
+        {
+            stringBuilder.Append($"Your daily life is: {dailyLife}. ");
         }
 
-        stringBuilder.Append(". ");
+        if (useAlignment)
+        {
+            stringBuilder.Append($"Your alignment is {GetLevel(alignment)}. ");
+        }
 
         if (moods.Count > 0)
         {
