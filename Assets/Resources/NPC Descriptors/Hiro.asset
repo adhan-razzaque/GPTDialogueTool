@@ -17,6 +17,7 @@ MonoBehaviour:
   age: 26
   temperament: Brilliant, Helpful, Pushover
   background: Hacker, Programmer, Swordsman
+  heritage: Half-Nipponese, Half-Black
   publicImage: lean, wearing a dark hacker outfit, carrying your two swords, long
     dreadlocks
   moods:
@@ -29,3 +30,6 @@ MonoBehaviour:
   relationships:
   - level: 2
     name: Y.T.
+  knownLanguages:
+  - English
+  - Japanese

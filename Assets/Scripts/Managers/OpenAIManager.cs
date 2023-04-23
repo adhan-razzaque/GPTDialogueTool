@@ -27,10 +27,6 @@ namespace Managers
         {
             Dialogue.OnDialogueStarted += () => { _lockInput = true; };
             Dialogue.OnDialogueFinished += () => { _lockInput = false; };
-        }
-
-        private void Start()
-        {
             LoadAPIKey();
         }
 
@@ -58,6 +54,11 @@ namespace Managers
 
             StartCoroutine(SendRequest(prompt, responseHandler));
         } // execute
+
+        public OpenAI_API.OpenAIAPI GetOpenAIApi()
+        {
+            return string.IsNullOrEmpty(_apiKey) ? new OpenAI_API.OpenAIAPI() : new OpenAI_API.OpenAIAPI(_apiKey);
+        }
 
         protected IEnumerator SendRequest(string prompt, Action<string> responseHandler)
         {

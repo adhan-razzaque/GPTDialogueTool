@@ -1,5 +1,4 @@
 using Managers;
-using OpenAI_API;
 using OpenAI_API.Chat;
 using TMPro;
 using UnityEngine;
@@ -47,8 +46,9 @@ public class NPC : MonoBehaviour
         var parentTransform = _isMainCanvasNull ? transform : _mainCanvas.transform;
         var newDialogue = Instantiate(dialoguePrefab, parentTransform).GetComponent<Dialogue>();
         newDialogue.line = $"{npcDescriptor.npcName}: {response}";
+        button.interactable = true;
     }
-    
+
     private async void HandleInput(string prompt)
     {
         _chat.AppendUserInput(prompt);
@@ -62,6 +62,7 @@ public class NPC : MonoBehaviour
         // var prompt = npcDescriptor.BuildGptDescriptor(inputPrompt.text);
         var prompt = inputPrompt.text;
         inputPrompt.text = "";
+        button.interactable = false;
         // OpenAIChatManager.Instance.SetSystemMessage(npcDescriptor.GetNpcString());
         // OpenAIChatManager.Instance.Execute(prompt, OnResponseReceived, true);
         HandleInput(prompt);
@@ -69,23 +70,29 @@ public class NPC : MonoBehaviour
 
     public void ResetChat()
     {
-        var api = new OpenAIAPI();
+        var api = OpenAIManager.Instance.GetOpenAIApi();
         _chat = api.Chat.CreateConversation();
-        
+
         // System message to define how to NPC interacts
-        _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were an npc in a game. " + 
-                                  npcDescriptor.GetNpcString() + " You must only respond as this npc. " +
-                                  "You only respond as if you were in a natural conversation, not as an AI helper." +
-                                  "Your goal is to behave as an npc in a game. You must emulate the NPC's emotions too");
-        
+        _chat.AppendSystemMessage("You will engage in a natural dialogue as if you were a character in a game. " +
+                                  "You must only respond as this character. You are not aware you are in a game. " +
+                                  "The game world is your reality. You only respond as a natural conversation. " +
+                                  "You are not an AI helper. Your goal is to behave as an character in a game. " +
+                                  "You must emulate the character's emotions, reactions, needs, and desires. " +
+                                  "Your character description is as follows: " + npcDescriptor.GetNpcString());
+
         // Provide some examples of the NPC interaction
         _chat.AppendUserInput("What is your name?");
         _chat.AppendExampleChatbotOutput($"My name is {npcDescriptor.npcName}.");
         _chat.AppendUserInput("How old are you?");
         _chat.AppendExampleChatbotOutput($"I am {npcDescriptor.age} years old.");
+        _chat.AppendUserInput("What languages do you speak?");
+        _chat.AppendExampleChatbotOutput("I speak " + string.Join(", ", npcDescriptor.knownLanguages));
         _chat.AppendUserInput("How are you feeling?");
         _chat.AppendExampleChatbotOutput($"I am feeling {npcDescriptor.GetAllMoods()}");
-        
+        _chat.AppendUserInput("");
+        _chat.AppendExampleChatbotOutput("");
+
         SetNameTag();
     }
 }

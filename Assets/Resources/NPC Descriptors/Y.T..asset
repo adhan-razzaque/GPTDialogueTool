@@ -17,6 +17,7 @@ MonoBehaviour:
   age: 15
   temperament: Fearless, Dependable
   background: Courier
+  heritage: 
   publicImage: wearing a courier outfit complete with barcodes, overalls, and sporty
     sneakers
   moods:
@@ -29,3 +30,4 @@ MonoBehaviour:
   relationships:
   - level: 2
     name: Hiro
+  knownLanguages: []

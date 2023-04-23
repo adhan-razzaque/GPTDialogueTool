@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Primitives;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -46,10 +47,12 @@ public class NPCDescriptor : ScriptableObject
     [Header("Description")]
     public string temperament;
     public string background;
+    public string heritage;
     public string publicImage;
 
     public List<Mood> moods;
     public List<Relationship> relationships;
+    public List<string> knownLanguages;
 
     private static string GetLevel<T>(T level)
     {
@@ -99,7 +102,7 @@ public class NPCDescriptor : ScriptableObject
 
     public string GetNpcString()
     {
-        var stringBuilder = new StringBuilder("You are an npc ");
+        var stringBuilder = new StringBuilder("You are a character ");
         
         if (!string.IsNullOrEmpty(npcName))
         {
@@ -125,13 +128,18 @@ public class NPCDescriptor : ScriptableObject
         {
             stringBuilder.Append($"{background}, ");
         }
+        
+        if (!string.IsNullOrEmpty(heritage))
+        {
+            stringBuilder.Append($"{heritage}, ");
+        }
 
         if (!string.IsNullOrEmpty(publicImage))
         {
             stringBuilder.Append($"{publicImage}, ");
         }
 
-        stringBuilder.Append("and you are in this game. ");
+        stringBuilder.Append(". ");
 
         if (moods.Count > 0)
         {
@@ -147,6 +155,15 @@ public class NPCDescriptor : ScriptableObject
             stringBuilder.Append("Your relationships are that you ");
 
             stringBuilder.Append(GetAllRelationships());
+
+            stringBuilder.Append(". ");
+        }
+
+        if (knownLanguages.Count > 0)
+        {
+            stringBuilder.Append("You only speak ");
+
+            stringBuilder.Append(string.Join(", ", knownLanguages));
 
             stringBuilder.Append(". ");
         }

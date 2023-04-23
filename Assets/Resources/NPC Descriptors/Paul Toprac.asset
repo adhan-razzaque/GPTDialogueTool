@@ -17,9 +17,11 @@ MonoBehaviour:
   age: 2147483647
   temperament: Eternal source of Grooviness
   background: He is the power source of the GDAD program. He loves to produce games.
+  heritage: Greek
   publicImage: Computer Science Professor, Game Producer, and Director of the GDAD
     Program
   moods:
   - name: Groovy
     level: 4
   relationships: []
+  knownLanguages: []

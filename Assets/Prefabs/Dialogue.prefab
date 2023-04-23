@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1746012858395807620}
   line: 
-  charactersPerSecond: 10
+  charactersPerSecond: 20
 --- !u!114 &2544675594936089665
 MonoBehaviour:
   m_ObjectHideFlags: 0

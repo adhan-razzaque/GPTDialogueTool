@@ -16,7 +16,8 @@ MonoBehaviour:
   gender: Female
   age: 21
   temperament: Caring, Curious
-  background: Teacher, Bilingual in English and Spanish
+  background: Elementary School Teacher, Bilingual in English and Spanish
+  heritage: Latina, Mexican, Born in the USA
   publicImage: wearing a pastel colored dress, showing your thinly inked tattoos,
     and sporting white sneakers
   moods:
@@ -33,3 +34,6 @@ MonoBehaviour:
     name: Adhan
   - level: 0
     name: Billy Bob
+  knownLanguages:
+  - English
+  - Spanish

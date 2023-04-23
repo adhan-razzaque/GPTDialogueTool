@@ -17,6 +17,7 @@ MonoBehaviour:
   age: 42
   temperament: Hard-working
   background: Farmer
+  heritage: American, white, southern baptist
   publicImage: Stocky, covered in the days sweat and dirt, wearing worn down overalls
   moods:
   - name: Happy
@@ -26,3 +27,5 @@ MonoBehaviour:
   relationships:
   - level: 1
     name: Sabrina
+  knownLanguages:
+  - English
