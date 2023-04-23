@@ -47,6 +47,8 @@ public class NPC : MonoBehaviour
         var newDialogue = Instantiate(dialoguePrefab, parentTransform).GetComponent<Dialogue>();
         newDialogue.line = $"{npcDescriptor.npcName}: {response}";
         button.interactable = true;
+        inputPrompt.interactable = true;
+        inputPrompt.text = "";
     }
 
     private async void HandleInput(string prompt)
@@ -61,7 +63,7 @@ public class NPC : MonoBehaviour
     {
         // var prompt = npcDescriptor.BuildGptDescriptor(inputPrompt.text);
         var prompt = inputPrompt.text;
-        inputPrompt.text = "";
+        inputPrompt.interactable = false;
         button.interactable = false;
         // OpenAIChatManager.Instance.SetSystemMessage(npcDescriptor.GetNpcString());
         // OpenAIChatManager.Instance.Execute(prompt, OnResponseReceived, true);

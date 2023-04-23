@@ -53,6 +53,7 @@ public class NPCSwitcher : MonoBehaviour
 
         _currentNpc = _npcPrefabs[0];
         _currentNpc.SetActive(true);
+        dropdown.RefreshShownValue();
     }
 
     private void OnEnable()
