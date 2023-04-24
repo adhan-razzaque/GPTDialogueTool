@@ -2606,6 +2606,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1994668972}
     m_Modifications:
+    - target: {fileID: 4921800891699234140, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921800891699234140, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b828bd242b8b90248ae4c7e92158cafa, type: 2}
+    - target: {fileID: 4921800891699234140, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921800891699234140, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8370192842193230669, guid: b828bd242b8b90248ae4c7e92158cafa, type: 2}
+    - target: {fileID: 4921800892313657897, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_GlobalFontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b828bd242b8b90248ae4c7e92158cafa, type: 2}
     - target: {fileID: 4921800892313657897, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_GlobalPointSize
       value: 32
@@ -2618,6 +2638,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4921800893004155756, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921800893004155756, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b828bd242b8b90248ae4c7e92158cafa, type: 2}
+    - target: {fileID: 4921800893004155756, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921800893004155756, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8370192842193230669, guid: b828bd242b8b90248ae4c7e92158cafa, type: 2}
     - target: {fileID: 8745280677904160585, guid: 37f9449727db63a4b80404e772bfd201, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
