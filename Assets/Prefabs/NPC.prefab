@@ -257,9 +257,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4921800892542310969}
-        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
-        m_MethodName: ResetChat
+      - m_Target: {fileID: 1048241199768179650}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: OnReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -526,8 +526,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4921800892542310969}
-        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+      - m_Target: {fileID: 1048241199768179650}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
         m_MethodName: OnSubmit
         m_Mode: 1
         m_Arguments:
@@ -777,6 +777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8745280677904160585}
   - component: {fileID: 4921800892542310969}
+  - component: {fileID: 1048241199768179650}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -821,8 +822,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcDescriptor: {fileID: 11400000, guid: ab682a60bd4de53449d1207ec3d6587e, type: 2}
+--- !u!114 &1048241199768179650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921800892542310968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddc607038f84e65b8f2eeb76760dcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 4921800892542310969}
   inputPrompt: {fileID: 4921800892313657897}
-  button: {fileID: 4921800891996082962}
+  submitButton: {fileID: 4921800891996082962}
   nameTag: {fileID: 8766153472687766046}
   dialoguePrefab: {fileID: 1746012858060977915, guid: fe82d6c5d52892a4da684c6b79f315b6, type: 3}
 --- !u!1 &4921800892623531431
