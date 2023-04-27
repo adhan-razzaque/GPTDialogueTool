@@ -19,6 +19,10 @@ MonoBehaviour:
   background: Farmer
   heritage: American, white, southern baptist
   publicImage: Stocky, covered in the days sweat and dirt, wearing worn down overalls
+  motivations: 
+  dailyLife: 
+  alignment: 0
+  useAlignment: 0
   moods:
   - name: Happy
     level: 2
@@ -27,5 +31,7 @@ MonoBehaviour:
   relationships:
   - level: 1
     name: Sabrina
+  - level: 2
+    name: Gregory Kimble the Farmer
   knownLanguages:
   - English

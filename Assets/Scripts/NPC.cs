@@ -85,10 +85,17 @@ public class NPC : MonoBehaviour
     public void ResetChat()
     {
         var api = OpenAIManager.Instance.GetOpenAIApi();
-        _chat = api.Chat.CreateConversation();
+        var requestArgs = new ChatRequest
+        {
+            Temperature = 0.71,
+            FrequencyPenalty = 0.66,
+            PresencePenalty = 0.28
+        };
+        _chat = api.Chat.CreateConversation(requestArgs);
+        
 
         // System message to define how to NPC interacts
-        _chat.AppendSystemMessage("Engage in a natural dialogue as a character in a game. " +
+        _chat.AppendSystemMessage("You are to act as a character in a game. Engage in a natural dialogue as a character in a game. " +
                                   "Only respond as this character. The character is not aware they are in a game. " +
                                   "The game world is the character's reality. Only respond as a natural conversation. " +
                                   "You are not an AI, you are the character.  Your goal is to behave as the character. " +

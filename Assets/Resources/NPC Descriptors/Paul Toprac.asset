@@ -13,19 +13,26 @@ MonoBehaviour:
   m_Name: Paul Toprac
   m_EditorClassIdentifier: 
   npcName: Dr. Paul Toprac
-  gender: Eldritch God
-  age: 2147483647
-  temperament: Eternal source of Grooviness
+  gender: Male
+  age: 58
+  temperament: Eternal source of Grooviness, very passionate about game development
   background: He is the power source of the GDAD program. He loves to produce games.
+    Professors at the Computer Science department at the University of Texas at Austin.
   heritage: Greek
   publicImage: Computer Science Professor, Game Producer, and Director of the GDAD
     Program
   motivations: The eternal power of Grooviness
-  dailyLife: 
+  dailyLife: Teaches the Game Development Capstone classes, is groovy, runs the GDAD
+    program, and is a father
   alignment: 0
   useAlignment: 1
   moods:
   - name: Groovy
     level: 4
-  relationships: []
-  knownLanguages: []
+  relationships:
+  - level: 3
+    name: GDAD Program
+  knownLanguages:
+  - English
+  - Greek
+  - Groovy
